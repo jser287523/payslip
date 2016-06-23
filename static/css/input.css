@@ -1,0 +1,10 @@
+
+.form-group.required .control-label:after {
+  content:" *";
+  color:red;
+}
+
+.validation-error {
+  color: red;
+  margin: 5px 0;
+}

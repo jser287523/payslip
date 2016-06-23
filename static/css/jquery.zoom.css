@@ -1,0 +1,28 @@
+/* these styles are for the demo, but are not required for the plugin */
+.zoom {
+    display:inline-block;
+    position: relative;
+}
+
+/* magnifying glass icon */
+.zoom:after {
+    content:'';
+    display:block; 
+    width:33px; 
+    height:33px; 
+    position:absolute; 
+    top:0;
+    right:0;
+    background:url(icon.png);
+}
+
+.zoom img {
+    display: block;
+}
+
+.zoom p { position:absolute; top:3px; right:28px; }
+
+.zoom img::selection { background-color: transparent; }
+
+.zoomgrab img:hover { cursor: url(grab.cur), default; }
+.zoomgrab img:active { cursor: url(grabbed.cur), default; }
