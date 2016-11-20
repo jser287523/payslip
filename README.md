@@ -1,10 +1,5 @@
-# myob-test
-MYOB payslip test
-
-Tech stack used as below:
-1. Node.js
-2. React
-3. Bootstrap
+# node-react-payslip
+Simple payslip app using node.js and React
 
 Steps to run the app
 1. install nodejs
