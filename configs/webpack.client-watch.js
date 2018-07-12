@@ -3,7 +3,7 @@ var config = require("./webpack.client.js");
 var moment = require('moment');
 var wds = {
     hostname: process.env.HOSTNAME || "localhost",
-    port: 8080
+    port: 8081
 };
 
 config.cache = true;

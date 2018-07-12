@@ -2,7 +2,6 @@
 /* eslint global-require: 0 */
 
 import { compose, createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import DevTools from '../pages/DevTools';
 import reducers from '../state';
 import sagas from '../sagas';
@@ -11,7 +10,6 @@ import createSagaMiddleware from 'redux-saga';
 export default function configureStore(initialState = {}) {
     const middlewares = [];
     const sagaMiddleware = createSagaMiddleware();
-    middlewares.push(thunk);
     middlewares.push(sagaMiddleware);
 
     if (__DEVELOPMENT__) {
@@ -23,7 +21,7 @@ export default function configureStore(initialState = {}) {
     }
 
     let createStoreWithMiddleware = applyMiddleware(...middlewares);
-    
+
     createStoreWithMiddleware = compose(
             createStoreWithMiddleware,
             DevTools.instrument()

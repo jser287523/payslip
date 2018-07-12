@@ -1,72 +1,49 @@
-
+import React from 'react';
 import flow from 'lodash/flow';
-import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
-import { loadDefault, generatePayslip } from '../state/employee';
+import { generatePayslip } from '../state/employee';
 var numeral = require('numeral');
-var moment = require('moment');
-import csvGen from '../lib/csv_generator';
 
-class Payslip extends React.Component {
+export class Payslip extends React.Component {
 
-  componentDidMount() {
-    this.props.loadDefault();
-  }
-
-  downloadCsv() {
-    var data = [['Name', 'pay period', 'gross income', 'income tax', 'net income', 'super']];
-
-    for (var j = 1; j <= this.props.payslips.length; ++j) {
-      let p = this.props.payslips[j - 1];
-      console.log(p)
-      data.push([p.name, p.paymentStart, p.incomeGross, p.taxGross, p.incomeNet, p.amountSuper]);
-    }
-
-    let csv = csvGen.new(data, 'payslips_export.csv', ',', true);
-    csv.download(true);
-  }
-
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.generatePayslip()
     this.forceUpdate()
   }
 
   render() {
-
     return (
-      <form onSubmit={this.handleSubmit.bind(this) }>
+      <form onSubmit={ this.handleSubmit }>
         <div>
           <div className="container">
             <div className="spacer">
               <div className="row">
                 <div className="col-lg-8  col-lg-offset-2">
-                  <h3>Employee profile</h3>
-
-
+                  <h3>Employee Detail</h3>
                   <div>
                     <label>First Name</label>
                     <div>
-                      <Field name="firstName" component="input" className="form-control" type="text" placeholder="First Name"/>
+                      <Field name="firstName" component="input" className="form-control" type="text" placeholder="First-Name"/>
                     </div>
                   </div>
                   <div>
                     <label>Last Name</label>
                     <div>
-                      <Field name="lastName" component="input" className="form-control" type="text" placeholder="Last Name"/>
+                      <Field name="lastName" component="input" className="form-control" type="text" placeholder="Last-Name"/>
                     </div>
                   </div>
                   <div>
                     <label>Annual Salary</label>
                     <div>
-                      <Field name="annualSalary" component="input" className="form-control" type="number" placeholder="Annual Salary"/>
+                      <Field name="annualSalary" component="input" className="form-control" type="number" placeholder="Annual-Salary"/>
                       <kbd>Monthly Gross Income: {this.props.emp.values && this.props.emp.values.annualSalary ? numeral(this.props.emp.values.annualSalary / 12).format('$0,0') : ''}</kbd>
                     </div>
                   </div>
                   <br/>
                   <div>
-                    <label>Super Rate</label>
+                    <label>Super-Rate</label>
                     <div>
                       <div className="input-group">
                         <Field name="superRate" component="input" className="form-control" type="number" step="0.01" placeholder="Super Rate" aria-describedby="basic-addon2"/>
@@ -76,13 +53,12 @@ class Payslip extends React.Component {
                   </div>
                   <br/>
                   <div>
-                    <label>Pay period</label>
+                    <label>Pay-period</label>
                     <div>
                       <Field name="paymentStart" component="input" className="form-control" type="month" placeholder="Pay period"/>
                     </div>
                   </div>
-                  
-                  
+
                   <div>
                     <button type="submit">
                       Generate Payslip
@@ -90,12 +66,9 @@ class Payslip extends React.Component {
 
                   </div>
 
-
-
-
                   <br/>
                   <br/>
-                  <h3>Employee monthly payslip</h3>
+                  <h3>Employee monthwise payslip</h3>
 
 
                   <div className="well">
@@ -104,17 +77,17 @@ class Payslip extends React.Component {
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>pay period</th>
-                          <th>gross income</th>
-                          <th>income tax</th>
-                          <th>net income</th>
-                          <th>super</th>
+                          <th>pay-period</th>
+                          <th>gross-income</th>
+                          <th>income-tax</th>
+                          <th>net-income</th>
+                          <th>super-amount</th>
                         </tr>
                       </thead>
                       <tbody>
                         {this.props.payslips.map((p, index) => {
 
-                          return <tr key={index}>
+                          return <tr key={index} className="payslip-row">
                             <td>{p.name}</td>
                             <td>{p.paymentStart }</td>
                             <td>{p.incomeGross }</td>
@@ -128,26 +101,11 @@ class Payslip extends React.Component {
                       </tbody>
                     </table>
 
-
-
-
-                  </div>
-
-                  <div>
-                    <button type="button" onClick={this.downloadCsv.bind(this) }>
-                      Export to CSV
-                    </button>
-
-                  </div>
-
-
-                </div>
-
+                    </div>
+                 </div>
               </div>
             </div>
           </div>
-
-
         </div>
       </form>
     );
@@ -156,21 +114,20 @@ class Payslip extends React.Component {
 
 const stateToProps = state => ({
   initialValues: state.employee.profile,
-  emp: state.form.empform,
+  emp: state.form.payform,
   payslips: state.employee.payslips
 });
 
 const actionsToProps = dispatch => ({
   loadDefault: () => dispatch(loadDefault()),
-  generatePayslip: () => dispatch(generatePayslip()),
-  downloadCsv: () => dispatch(downloadCsv())
+  generatePayslip: () => dispatch(generatePayslip())
 });
 
 Payslip.defaultProps = { emp: {}, payslips: [] };
 
 const decorators = flow([
   reduxForm({
-    form: 'empform'
+    form: 'payform'
   }),
   connect(stateToProps, actionsToProps)
 ]);

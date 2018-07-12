@@ -27,7 +27,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c82b7581e1bc7ea85152"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "30008b10f03a986f4f95"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -543,15 +543,15 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
 	module.exports = __webpack_require__(3);
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__resourceQuery) {/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -593,9 +593,9 @@
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, "?1000"))
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -624,9 +624,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -673,14 +673,12 @@
 	
 	    //error log
 	    app.use(function (err, req, res, next) {
-	        console.log(err.stack.red);
 	        res.status(err.status || 500);
 	        res.send({ message: err.message });
 	    });
 	
 	    //Start Server
 	    server.listen(app.get('port'), function () {
-	        console.log('Express server listening on port ' + app.get('port'));
 	        var open = __webpack_require__(11);
 	        open("http://localhost:8000");
 	    });
@@ -704,54 +702,54 @@
 	    console.error(error.stack || error);
 	}
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("babel-polyfill");
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("path");
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("express");
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("compression");
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("morgan");
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("swig");
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("http");
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("open");
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=server.js.map

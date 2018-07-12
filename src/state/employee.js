@@ -13,16 +13,14 @@ export default function reducer(state = {payslips: [], profile: null}, action) {
                 profile: action.payload
             };
         case GENERATE_PAYSLIP_SUCCESS:
-            state.payslips.push(action.payload)
             return {
             ...state,
-                payslips: state.payslips
-            }; 
+                payslips: { ...action.payload }
+            };
         default:
             return state;
     }
 }
 
-export const loadDefault = createAction(LOAD_DEFAULT);
 export const generatePayslip = createAction(GENERATE_PAYSLIP);
 

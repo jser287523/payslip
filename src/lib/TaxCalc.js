@@ -1,6 +1,5 @@
 /***
  * Tax Calculating.
- *
  * Minor error checking.
  * */
 function TaxCalc(conf) {
@@ -92,11 +91,11 @@ TaxCalc.prototype.genReport = function (incomeTotal) {
     report.taxSuper = this.taxSuperAnnuation(report.amountSuper);
 
     report.taxTotal = report.taxGross + report.taxSuper;
-        
+
     report.incomeNet =  report.incomeGross - report.taxGross
-    
+
     // console.log(report)
-       
+
     return report;
 };
 

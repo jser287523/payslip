@@ -2,21 +2,10 @@ var numeral = require('numeral');
 var moment = require('moment');
 import TaxCalc from '../lib/TaxCalc';
 import { put, select } from 'redux-saga/effects';
-import { LOAD_DEFAULT_SUCCESS, GENERATE_PAYSLIP_SUCCESS } from '../state/employee';
-
-export function* loadDefault(action) {
-    let profile = {
-        firstName: 'John',
-        lastName: 'Doe',
-        annualSalary: 80000,
-        superRate: 9.5,
-        paymentStart: '2016-06'
-    }
-    yield put({ type: LOAD_DEFAULT_SUCCESS, payload: profile });
-}
+import {  GENERATE_PAYSLIP_SUCCESS } from '../state/employee';
 
 export function* generatePayslip(action) {
-    const form = yield select(state => state.form.empform.values);
+    const form = yield select(state => state.form.payform.values);
     let taxcalc = TaxCalc.new(form.superRate)
     let rpt = taxcalc.genReport(form.annualSalary)
 
